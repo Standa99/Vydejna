@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<center><h2>Prosím, přihlaš se!</h2><br></center>
+    <form method="POST">
+        {% csrf_token %}
+        <table>{{form}}
+
+        </table>
+        <input type="submit" value="Submit" class="btn btn-primary">
+
+    </form>
+
+
+{% endblock %}

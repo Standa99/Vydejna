@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+    function getparameter(){
+        const queryString = window.location.search;
+        var query_split = queryString.split('&');
+        var query_string_list_zero = [];
+        var query_string_list_value = [];
+        var query_string_list_number = [];
+        for (var i=1; i<query_split.length; i++) {
+            var query_splitsplit = query_split[i].split('=');
+            if (query_splitsplit[1] == '0' ){
+               query_string_list_zero.push(query_splitsplit[0]);
+               console.log('zero' + query_string_list_zero);
+            }else{
+               query_string_list_value.push(query_splitsplit[0]);
+               query_string_list_number.push(query_splitsplit[1]);
+               console.log(query_string_list_value);
+
+            }
+        }
+        var query_string_list_result = [];
+        for (var j=0; j<query_string_list_value.length; j++) {
+            brt_code = query_string_list_value[j]
+            brt_code_bold = brt_code.bold()
+            quantity_number = query_string_list_number[j]
+            quantity_number_bold = quantity_number.bold()
+            x = 'Vyfasoval si ze skladu náhradní díl číslo' +' '+ brt_code_bold +' '+ 'v množství'+' '+  quantity_number_bold +' '+ 'kusů' + '<br>';
+            query_string_list_result.push(x)
+            console.log(x)
+        }
+        document.getElementById("demo").innerHTML = query_string_list_result;
+    }
+
+</script>
+<center><h3>Overview The Parts You Handed IN</h3><br></center>
+
+
+
+{%for part_dict in ordered_parts%}
+    {%if part_dict.ordered_quantity %}
+        <p>Vrátil si do VÝDEJNY <b>{{part_dict.part_object.name_CZ}}</b> v počtu <b>{{part_dict.ordered_quantity}}</b> kusů</p>
+    {%endif%}
+{%endfor%}
+
+
+
+{%comment%}
+
+{%endcomment%}
+{% endblock %}
+
+
+

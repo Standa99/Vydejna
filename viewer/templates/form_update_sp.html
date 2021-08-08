@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center><h3>Změň libovolný atribut náhradního dílu a nezapomeň <b>Uložit</b> změny</h3><br></center>
+    <form method="POST">
+        {% csrf_token %}
+        <table>{{form}}
+
+        </table>
+        <input type="submit" value="Uložit" class="btn btn-primary">
+
+    </form>
+
+
+{% endblock %}

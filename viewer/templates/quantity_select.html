@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center><h2>Please set the QUANTITY of parts you need</h2><br></center>
+<form method="POST" action="{% url 'order_parts' %}" >
+    {% csrf_token %}
+    <table class="table">
+      <thead>
+        <tr>
+            <th scope="col">BRT_id</th>
+            <th scope="col">Suppliers_id</th>
+            <th scope="col">Main_ctg</th>
+            <th scope="col">Sub_ctg</th>
+            <th scope="col">name_CZ</th>
+            <th scope="col">Store_name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Set quantity</th>
+            <th scope="col">Price_CZ</th>
+            <th scope="col">Price_EUR</th>
+        </tr>
+      </thead>
+        <tbody>
+
+        {%for spare_part in object_list %}
+                <tr>
+                    <th scope="row">{{spare_part.order_code_brt}}</th>
+                    <td>{{spare_part.order_code_suppliers}}</td>
+                    <td>{{spare_part.main_category}}</td>
+                    <td>{{spare_part.sub_category}}</td>
+                    <td>{{spare_part.name_CZ}}</td>
+                    <td>{{spare_part.store_name}}</td>
+                    <td>{{spare_part.quantity}}</td>
+                    <td>
+                            <input name="{{spare_part.order_code_brt}}" style="width='150px'" type="number" class="quantity" min='0' max='{{spare_part.quantity}}' value="0">
+                        </td>
+                    <td>{{spare_part.price_CZ}}</td>
+                    <td>{{spare_part.price_EUR}}</td>
+                </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+<input type="submit" value="Commit changes" onclick="getvalue(this)">
+</center>
+
+
+</form>
+
+</center>
+
+
+{% endblock %}
+
+
+

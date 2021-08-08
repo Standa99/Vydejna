@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<center><h2>Prosím, zadej BRT kód náhradního dílu!</h2><br></center>
+    <form method="POST">
+        {% csrf_token %}
+{%comment%}{%endcomment%}
+        <table>{{form}}
+
+        </table>
+
+
+           <input type="submit" value="Submit">
+
+    </form>
+
+
+
+
+{% endblock %}
+</body>

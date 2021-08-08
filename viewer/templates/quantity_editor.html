@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block quantity %}
+
+<script>
+    function get(){
+        var n1 = document.getElementById("quantity").value;
+        x= n1;
+        document.getElementById("demo").innerHTML = x;
+    }
+    function getresult(){
+       return x;
+    }
+    document.getElementById("demo").innerHTML = getresult()
+</script>
+
+
+<center><h2>Overview of all spare parts</h2><br></center>
+<div style="display:inline">
+    <table class="table" width="50%">
+      <thead>
+        <tr>
+            <th scope="col">BRT_id</th>
+<!--            <th scope="col">Suppliers_id</th>-->
+<!--            <th scope="col">Main_ctg</th>-->
+<!--            <th scope="col">Sub_ctg</th>-->
+<!--            <th scope="col">name_CZ</th>-->
+<!--            <th scope="col">Store_name</th>-->
+            <th scope="col">Name_CZ</th>
+
+
+            <th scope="col">Price_CZ</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Set quantity</th>
+<!--            <th scope="col">Price_EUR</th>-->
+        </tr>
+      </thead>
+        <tbody>
+
+        {%for spare_part in object_list %}
+                <tr>
+                    <th scope="row">{{spare_part.order_code_brt}}</th>
+                    <td scope="row" style="color:white">{{spare_part.quantity_editor}}</td>
+<!--                    <td>{{spare_part.order_code_suppliers}}</td>-->
+<!--                    <td>{{spare_part.main_category}}</td>-->
+<!--                    <td>{{spare_part.sub_category}}</td>-->
+                    <td>{{spare_part.name_CZ}}</td>
+
+<!--                    <td>{{spare_part.store_name}}</td>-->
+
+
+
+
+
+<!--                        <input style="width='150px'" type="number" id="quantity" value="0">-->
+<!--                        <button type="button" onclick="get()">save</button>-->
+<!--                        <p id="demo">test</p>-->
+                    <td>{{spare_part.price_CZ}}</td>
+                    <td>{{spare_part.quantity}}</td>
+
+<!--                    <td>{{spare_part.price_EUR}}</td>-->
+                </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+
+</div>
+<center>
+<!--    <input type="submit" value="Commit changes" onclick="getvalue(this)"><br>-->
+
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+
+
+
+
+
+<script>
+ function addNum(n1, n2) {
+  return parseInt(n1) + parseInt(n2);
+}
+
+function addNumAction() {
+  var n1 = document.getElementById("num1").value;
+  var n2 = document.getElementById("num2").value;
+
+  var sum = addNum(n1, n2);
+  x = sum
+  document.getElementById("demo").innerHTML = x
+
+
+}
+
+function getresult(){
+    return sum;
+}
+document.getElementById("demo").innerHTML = getresult()
+</script>
+
+
+<button id="demo" type="button" onclick="addNumAction()">
+    Testíček
+    </button>
+<input style="width='150px'" type="number" id="quantity" value="0">
+<button type="button" onclick="get()">save</button>
+
+</center>
+
+{% endblock %}
+
+
+
